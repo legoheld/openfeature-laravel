@@ -1,0 +1,42 @@
+{
+    "name": "open-feature/laravel",
+    "description": "A wrapper around the openfeature sdk to simplify config and access on open features",
+    "keywords": [
+        "laravel",
+        "open-feature",
+        "feature flags"
+    ],
+    "homepage": "https://github.com/legoheld/openfeature-laravel",
+    "require": {
+        "php": ">=8.0",
+        "open-feature/sdk": "^2.0",
+        "illuminate/support": "^9.0 || ^10.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OpenFeature\\OpenFeatureServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "phpunit/php-code-coverage": "^10",
+        "phpunit/phpunit": "^10"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenFeature\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Flipt\\Tests\\": "tests/"
+        }
+    },
+    "suggest": {
+        "open-feature/flagd-provider": "Adds support for flagd provider"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
