@@ -19,7 +19,7 @@ return [
     /**
      * Set the default client to use
      */
-    'defaultClient' => 'main',
+    'default' => 'main',
 
     /**
      * Specify your different clients you want to use in you project
