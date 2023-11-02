@@ -6,13 +6,59 @@ return [
     /**
      * Specify the open feature provider you want to use.
      *
-     * Possible keys are: cloudbee, flagd, flipt
+     * Possible keys are: split, flagd, flipt
      */
     'provider' => [
 
-        'type' => 'cloudbee',
-        'apiKey' => '....',
 
+        /* 
+         * flagd example 
+        'type' => 'flagd',
+        'host' => 'localhost',
+        'protocol' => 'http',
+        'port' => 8013,
+        */
+
+
+        /* 
+         * flipt example 
+        'type' => 'flipt',
+        'host' => 'localhost',
+        'namespace' => 'ns',
+        'apiToken' => 'token',
+        */
+
+
+        /* 
+         * split example 
+        'type' => 'split',
+        'apiKey' => '....',
+        'options' => [
+            'cache' => [
+            'adapter' => 'predis',
+            'parameters' => [
+                'scheme' => 'tcp',
+                'host' => getenv('REDIS_HOST'),
+                'port' => getenv('REDIS_PORT'),
+                'timeout' => 881,
+            ],
+            'options' => [
+                'prefix' => '',
+            ],
+        ],
+        */
+
+
+
+        /* 
+         * cloudbees example 
+        'type' => 'cloudbees',
+        'apiKey' => '....',
+        // ROXOptions
+        'options' => [
+           ...
+        ],
+        */
     ],
 
 

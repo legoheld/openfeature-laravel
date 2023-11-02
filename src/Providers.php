@@ -27,7 +27,9 @@ class Providers
 
     function cloudbee($config)
     {
-        throw new \Exception("cloudbee provider not supported yet.");
+        $this->validateClass('OpenFeature\Providers\Flagd\CloudBeesProvider', 'composer require open-feature/cloudbees-provider');
+    
+        return new \OpenFeature\Providers\Flagd\CloudBeesProvider($config['apiKey'], $config['options']);
     }
 
     function flagd($config)
@@ -47,7 +49,9 @@ class Providers
 
     function flipt($config)
     {
-        throw new \Exception("flipt provider not supported yet.");
+        $this->validateClass('OpenFeature\Providers\Flipt\FliptProvider', 'composer require open-feature/flipt-provider');
+
+        return new \OpenFeature\Providers\Flipt\FliptProvider( $config['host'], $config['apiToken'], $config['namespace'] );
     }
 
     function split($config)
@@ -56,6 +60,8 @@ class Providers
 
         return new \OpenFeature\Providers\Split\SplitProvider($config['apiKey'], $config['options']);
     }
+
+
 
 
     function validateClass($class, $package)
