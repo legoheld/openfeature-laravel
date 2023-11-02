@@ -20,8 +20,9 @@
         }
     },
     "require-dev": {
+        "mockery/mockery": "^1.6",
         "phpunit/php-code-coverage": "^10",
-        "phpunit/phpunit": "^10"
+        "phpunit/phpunit": "^10.4"
     },
     "autoload": {
         "psr-4": {
@@ -30,7 +31,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Flipt\\Tests\\": "tests/"
+            "OpenFeature\\Tests\\": "tests/"
         }
     },
     "suggest": {

@@ -3,12 +3,13 @@
 namespace OpenFeature\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use OpenFeature\OpenFeature as OpenFeatureImpl;
 
 
-class OpenFeature extends Facade {
+class OpenFeature extends Facade
+{
 
-	protected static function getFacadeAccessor() {
-        return OpenFeatureImpl::class;
+    protected static function getFacadeAccessor()
+    {
+        return 'OpenFeature';
     }
 }

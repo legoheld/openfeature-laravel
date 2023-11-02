@@ -2,29 +2,16 @@
 
 return [
 
+
     /**
      * Specify the open feature provider you want to use.
-     * 
+     *
      * Possible keys are: cloudbee, flagd, flipt
      */
     'provider' => [
-        
-        'cloudbee' => [
-            'apiKey' => '....',
-        ],
 
-        'flagd' => [
-            'protocol' => 'http',
-            'host' => 'localhost',
-            'port' => 8013,
-            'secure' => true,
-        ],
-
-        'flipt' => [
-            'host' => '',
-            'token' => '',
-            'namespace' => ''
-        ]
+        'type' => 'cloudbee',
+        'apiKey' => '....',
 
     ],
 
@@ -32,7 +19,7 @@ return [
     /**
      * Set the default client to use
      */
-    'default' => 'main',
+    'defaultClient' => 'main',
 
     /**
      * Specify your different clients you want to use in you project
@@ -40,12 +27,9 @@ return [
     'clients' => [
 
         'main' => [
-
             'context' => [
                 'environment' => 'test',
             ],
-
-            'mapper' => null,
         ]
     ]
 

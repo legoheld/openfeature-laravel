@@ -4,7 +4,8 @@ namespace OpenFeature\Mappers;
 
 use OpenFeature\interfaces\flags\EvaluationContext;
 
-interface ContextMapper {
+interface ContextMapper
+{
 
-    public function map( mixed $scope, array $context ):EvaluationContext;
+    public function map(array $context, mixed $scope): EvaluationContext;
 }

@@ -1,10 +1,10 @@
-<?php namespace OpenFeature;
+<?php
+
+namespace OpenFeature;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Config;
-use OpenFeature;
-
 
 class OpenFeatureServiceProvider extends ServiceProvider
 {
@@ -15,8 +15,8 @@ class OpenFeatureServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes( [
-            __DIR__.'/../config/config.php' => config_path( 'openfeature.php' ),
+        $this->publishes([
+            __DIR__ . '/../config/openfeature.php' => config_path('openfeature.php'),
         ]);
     }
 
@@ -27,8 +27,13 @@ class OpenFeatureServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(OpenFeature::class, function (Application $app) {
-            return new OpenFeature( OpenFeature::clientFromConfig( Config::get( 'openfeature.default' ) ) );
+        $this->app->singleton('OpenFeature', function (Application $app) {
+
+            // setup the provider
+            $providers = new Providers();
+            $providers->setup(Config::get('openfeature.provider'));
+
+            return OpenFeature::fromConfig(Config::get('openfeature.default'));
         });
     }
 }

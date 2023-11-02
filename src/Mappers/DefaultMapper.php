@@ -6,11 +6,16 @@ use OpenFeature\implementation\flags\EvaluationContext;
 use OpenFeature\implementation\flags\Attributes;
 
 
-class DefaultMapper implements ContextMapper {
+class DefaultMapper implements ContextMapper
+{
 
-    public function map( mixed $scope, array $context ):EvaluationContext {
+    public function map(array $context, mixed $scope = null): EvaluationContext
+    {
+
+        // try to extract id from given scope
+        $id = optional($scope)->id;
 
         // TODO: How to get id, dyanamically
-        return new EvaluationContext( null, new Attributes( $context ) );
+        return new EvaluationContext($id, new Attributes($context));
     }
 }
