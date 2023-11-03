@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace OpenFeature\Laravel\Tests;
 
 use Illuminate\Support\Facades\App;
 use Mockery;

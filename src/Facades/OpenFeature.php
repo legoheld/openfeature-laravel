@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenFeature\Facades;
+namespace OpenFeature\Laravel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

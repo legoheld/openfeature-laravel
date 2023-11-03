@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenFeature;
+namespace OpenFeature\Laravel;
 
 use OpenFeature\OpenFeatureAPI;
 

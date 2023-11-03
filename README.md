@@ -15,7 +15,7 @@ composer require open-feature/laravel
 Publish the configuration file with:
 
 ```bash
-php artisan vendor:publish --provider="OpenFeature\OpenFeatureServiceProvider"
+php artisan vendor:publish --provider="OpenFeature\Laravel\OpenFeatureServiceProvider"
 ```
 
 This creates a config/openfeature.php file in your config directory for provider and client specification.
@@ -65,7 +65,7 @@ The OpenFeature facade provides a simple way to interact with feature flags. Her
 
 ```php
 
-use OpenFeature\Facades\OpenFeature;
+use OpenFeature\Laravel\Facades\OpenFeature;
 
 // Get boolean flag
 $isEnabled = OpenFeature::boolean('feature_key', false);
@@ -84,12 +84,53 @@ $config = OpenFeature::object('feature_config', []);
 
 ```
 
+### Laravel Penannt Compatibility Aliases
+
+The OpenFeature class provides methods compatible with the Laravel package Penannt for toggling features:
+
+```php
+// Check if a feature is active
+$isActive = OpenFeature::active('feature-key');
+
+// Check if all features are active
+$allActive = OpenFeature::allAreActive(['feature-one', 'feature-two']);
+
+// Check if some features are active
+$someActive = OpenFeature::someAreActive(['feature-one', 'feature-two']);
+
+// Check if a feature is inactive
+$isInactive = OpenFeature::inactive('feature-key');
+
+// Check if all features are inactive
+$allInactive = OpenFeature::allAreInactive(['feature-one', 'feature-two']);
+
+// Check if some features are inactive
+$someInactive = OpenFeature::someAreInactive(['feature-one', 'feature-two']);
+
+// Execute closure when feature is active
+OpenFeature::when('feature-key', function() {
+    // Feature is active
+}, function() {
+    // Feature is inactive
+});
+
+// Execute closure unless feature is active
+OpenFeature::unless('feature-key', function() {
+    // Feature is inactive
+}, function() {
+    // Feature is active
+});
+
+```
+
 ### Client Selection
 
 If you want to use a specific client, you can retrieve it by name:
 
 ```php
 $client = OpenFeature::client('client_name');
+// Now use the custom client to evaluate feature flags
+$customBooleanFlagValue = $client->boolean('feature-key');
 ```
 
 
@@ -102,20 +143,20 @@ $scopedClient = OpenFeature::for($user);
 ```
 
 
-### Using with UserTrait
+### Using with HasFeatures trait
 
-The UserTrait can be used in your User model to access the facade directly:
+The HasFeatures trait can be used in your User model to access the facade directly:
 
 ```php
 <?php
 
 namespace App\Models;
 
-use OpenFeature\Traits\UserFeature;
+use OpenFeature\Laravel\Traits\HasFeatures;
 
 class User 
 {
-    use UserFeature;
+    use HasFeatures;
 
     // ....
 }
@@ -133,7 +174,7 @@ Note that the UserTrait will automatically scope the user model for mapping see 
 ## Custom Mapper
 
 
-For custom mappers you have to implement the OpenFeature\Mappers\ContextMapper interface.
+For custom mappers you have to implement the OpenFeature\Laravel\Mappers\ContextMapper interface.
 An example cloud look like this:
 ```php
 
@@ -141,7 +182,7 @@ An example cloud look like this:
 
 namespace App\Mappers;
 
-use OpenFeature\Mappers\ContextMapper;
+use OpenFeature\Laravel\Mappers\ContextMapper;
 use OpenFeature\interfaces\flags\EvaluationContext;
 
 

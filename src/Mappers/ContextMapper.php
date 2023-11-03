@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenFeature\Mappers;
+namespace OpenFeature\Laravel\Mappers;
 
 use OpenFeature\interfaces\flags\EvaluationContext;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenFeature\Mappers;
+namespace OpenFeature\Laravel\Mappers;
 
 use OpenFeature\implementation\flags\EvaluationContext;
 use OpenFeature\implementation\flags\Attributes;

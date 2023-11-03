@@ -26,19 +26,19 @@
     },
     "autoload": {
         "psr-4": {
-            "OpenFeature\\": "src/"
+            "OpenFeature\\Laravel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "OpenFeature\\Tests\\": "tests/"
+            "OpenFeature\\Laravel\\Tests\\": "tests/"
         }
     },
     "suggest": {
         "open-feature/flagd-provider": "Adds support for flagd provider",
         "open-feature/flipt-provider": "Adds support for flipt provider",
         "open-feature/split-provider": "Adds support for split provider",
-        "open-feature/cloudbees-provider": "Adds support for cloudbees provider",
+        "open-feature/cloudbees-provider": "Adds support for cloudbees provider"
     },
     "config": {
         "sort-packages": true
