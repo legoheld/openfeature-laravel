@@ -7,6 +7,6 @@ use OpenFeature\Laravel\Facades\OpenFeature;
 trait HasFeatures {
 
     public function features() {
-        return OpenFeature::scope( $this );
+        return OpenFeature::for( $this );
     } 
 }
