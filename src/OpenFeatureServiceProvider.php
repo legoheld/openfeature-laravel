@@ -5,6 +5,7 @@ namespace OpenFeature\Laravel;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Config;
+use OpenFeature\OpenFeatureAPI;
 
 class OpenFeatureServiceProvider extends ServiceProvider
 {
@@ -30,10 +31,11 @@ class OpenFeatureServiceProvider extends ServiceProvider
         $this->app->singleton('OpenFeature', function (Application $app) {
 
             // setup the provider
-            $providers = new Providers();
-            $providers->setup(Config::get('openfeature.provider'));
+            $provider = ProviderBuilder::fromConfig(Config::get('openfeature.provider'));
+            OpenFeatureAPI::getInstance()->setProvider($provider);
 
-            return OpenFeature::fromConfig(Config::get('openfeature.default'));
+            // setup client from config
+            return OpenFeature::fromConfig(Config::get('openfeature.default') );
         });
     }
 }

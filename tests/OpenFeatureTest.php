@@ -4,7 +4,6 @@ namespace OpenFeature\Laravel\Tests;
 
 use Illuminate\Support\Facades\App;
 use Mockery;
-use OpenFeature\OpenFeature;
 use OpenFeature\interfaces\provider\Provider as OpenFeatureProvider;
 use OpenFeature\OpenFeatureAPI;
 use Illuminate\Support\Facades\Config;
@@ -13,6 +12,7 @@ use OpenFeature\implementation\flags\Attributes;
 use OpenFeature\implementation\flags\EvaluationContext;
 use OpenFeature\implementation\flags\MutableEvaluationContext;
 use OpenFeature\implementation\provider\ResolutionDetailsFactory;
+use OpenFeature\Laravel\OpenFeature;
 use OpenFeature\Mappers\ContextMapper;
 use PHPUnit\Framework\TestCase;
 

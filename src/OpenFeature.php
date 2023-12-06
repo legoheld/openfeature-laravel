@@ -5,6 +5,7 @@ namespace OpenFeature\Laravel;
 use Closure;
 use OpenFeature\OpenFeatureClient;
 use OpenFeature\OpenFeatureAPI;
+use OpenFeature\interfaces\provider\Provider;
 use OpenFeature\Laravel\Mappers\DefaultMapper;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -15,7 +16,7 @@ class OpenFeature
 
     protected OpenFeatureClient $client;
 
-    public function __construct(OpenFeatureClient $client)
+    public function __construct(OpenFeatureClient $client )
     {
         $this->client = $client;
     }
@@ -23,13 +24,18 @@ class OpenFeature
 
     function client(string $name)
     {
-        return self::fromConfig($name);
+        return self::fromConfig($name, null );
+    }
+
+
+    function provider() {
+        return OpenFeatureAPI::getInstance()->getProvider();
     }
 
 
     function for(mixed $scope)
     {
-        return self::fromConfig($this->client->getMetadata()->getName(), $scope);
+        return self::fromConfig($this->client->getMetadata()->getName(), $scope );
     }
 
 
@@ -105,7 +111,7 @@ class OpenFeature
 
 
 
-    public static function fromConfig(string $name, mixed $scope = null): self
+    public static function fromConfig(string $name, mixed $scope = null ): self
     {
 
         $client = OpenFeatureAPI::getInstance()->getClient($name, '');
@@ -119,6 +125,8 @@ class OpenFeature
 
         $client->setEvaluationContext($mapper->map(Config::get($configPath . '.context', []), $scope));
 
-        return new self($client);
+        
+
+        return new self($client );
     }
 }
